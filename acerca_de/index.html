@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de nosotros &#8212; Fairlearn 0.7.0 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Preguntas Frequentes" href="../preguntas_frequentes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="https://fairlearn.org">
+  <img src="../_static/fairlearn_full_color.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Introducción
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../guia_usuario/index.html">
+  Guía de Usuario
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../auto_examples/index.html">
+  Ejemplos (Jupyter Notebooks)
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../preguntas_frequentes.html">
+  Preguntas Frequentes
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Acerca de nosotros
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fairlearn/fairlearn" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fairlearn" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://stackoverflow.com/questions/tagged/fairlearn" rel="noopener" target="_blank" title="StackOverflow">
+            <span><i class="fab fa-stack-overflow"></i></span>
+            <label class="sr-only">StackOverflow</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://discord.gg/R22yCfgsRn" rel="noopener" target="_blank" title="Discord">
+            <span><i class="fab fa-discord"></i></span>
+            <label class="sr-only">Discord</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mision">
+   Mision
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#codigo-de-conducta">
+   Código de conducta
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#areas-de-enfoque-en-el-proyecto">
+   Áreas de enfoque en el proyecto
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gobernanza">
+   Gobernanza
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mantenedores">
+     Mantenedores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#traductores-a-espanol">
+     Traductores a Español
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#historia-del-proyecto">
+   Historia del proyecto
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citando-a-fairlearn">
+   Citando a Fairlearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preguntas-frecuentes">
+   Preguntas frecuentes
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="acerca-de-nosotros">
+<span id="acerca-de"></span><h1>Acerca de nosotros<a class="headerlink" href="#acerca-de-nosotros" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mision">
+<span id="id1"></span><h2>Mision<a class="headerlink" href="#mision" title="Permalink to this headline">¶</a></h2>
+<p>Fairlearn es un proyecto de código abierto impulsado por la comunidad para ayudar a los científicos de datos
+mejorar la equidad de los sistemas de inteligencia artificial.</p>
+<p>El proyecto aspira a incluir:</p>
+<ul class="simple">
+<li><p>Una biblioteca de Python para la evaluación y mejora de la equidad (métricas de equidad,
+algoritmos de mitigación, trazado, etc.)</p></li>
+<li><p>Recursos educativos que abarcan procesos organizativos y técnicos para
+mitigación de la injusticia (guía de usuario completa, estudios de casos detallados,
+Jupyter notebooks, Libros Blancos, etc.)</p></li>
+</ul>
+<p>El desarrollo de Fairlearn se basa firmemente en el entendimiento de que la equidad
+en los sistemas de inteligencia artificial (IA) es un desafío sociotécnico.
+Debido a que hay muchas fuentes complejas de injusticia, algunas sociales y
+algunas técnicos — no es posible eliminar el prejuicio completamente en un sistema o
+garantizar la equidad.
+Nuestro objetivo es permitir que los humanos evalúen los daños relacionados con la equidad, revisar el
+impactos de diferentes estrategias de mitigación y luego hacer concesiones
+apropiado a su escenario.</p>
+<p>¡Fairlearn es un proyecto de código abierto impulsado por la comunidad!
+El desarrollo y crecimiento de Fairlearn están guiados por la creencia de que
+el progreso hacia sistemas de IA más justos requiere la participación de una amplia variedad de
+de perspectivas, que van desde científicos de datos, desarrolladores y empresas
+que toman decisiones a las personas cuyas vidas pueden verse afectadas por las predicciones
+de los sistemas de IA.</p>
+</div>
+<div class="section" id="codigo-de-conducta">
+<span id="code-of-conduct"></span><h2>Código de conducta<a class="headerlink" href="#codigo-de-conducta" title="Permalink to this headline">¶</a></h2>
+<p>Fairlearn se guía en el siguiente código de conducta:
+<a class="reference external" href="https://github.com/fairlearn/governance/blob/main/code-of-conduct.md">Código de Conducta de la organización (en Inglés)</a>.</p>
+</div>
+<div class="section" id="areas-de-enfoque-en-el-proyecto">
+<span id="roadmap"></span><h2>Áreas de enfoque en el proyecto<a class="headerlink" href="#areas-de-enfoque-en-el-proyecto" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Última actualización: 16 de mayo de 2021 *</p></li>
+</ul>
+<p>Como proyecto de código abierto, Fairlearn se esfuerza por incorporar lo mejor de
+investigación y práctica.</p>
+<p>La IA es un campo en rápida evolución, y la justicia en la IA lo es aún más.
+Por lo tanto, alentamos a los investigadores y profesionales interesados a
+contribuir con métricas de equidad y herramientas de evaluación, mitigación de la injusticia
+algoritmos, estudios de casos y otros materiales educativos a Fairlearn para que podamos
+experimentar, aprender y revolucionar el proyecto juntos.</p>
+<p>A continuación, enumeramos las áreas clave que priorizamos en el corto
+y mediano plazo, pero nos complace considerar otras direcciones
+si están alineados con la misión de Fairlearn y hay suficiente compromiso
+de los contribuyentes. Si quieres involucrarte, por favor comuníquese con
+<a class="reference external" href="https://scikit-learn.org/stable/developers/contributing.html#communication" title="(in scikit-learn v1.0)"><span class="xref std std-ref">reach out</span></a>. Para oportunidades concretas y
+trabajo en progreso por favor revise nuestras
+<a class="reference external" href="https://github.com/fairlearn/fairlearn/issues">issues</a>.</p>
+<ol class="arabic simple">
+<li><p><em>Disminuir las barreras de adopción para las herramientas actuales de evaluación y mitigación en Fairlearn</em></p>
+<ul class="simple">
+<li><p><strong>Mejore los casos de uso existentes y cree nuevos</strong> que
+<a class="reference external" href="https://fairlearn.github.io/contributor_guide/contributing_example_notebooks.html">hacen que los problemas de equidad sean concretos</a>.
+Estos casos de uso pueden utilizar o no el paquete Fairlearn.
+Para acelerar este proceso, estamos experimentando con
+<span class="xref std std-ref">sesiones semanales</span> donde la gente puede discutir ideas,
+proyectos en curso y cuadernos de ejemplo individuales en detalle.</p></li>
+<li><p><strong>Mejorar la documentación del proyecto</strong>: criticar el contenido actual,
+ampliar las guías de usuario, mejorar la escritura y los ejemplos, migrar la
+documentación de Python actual al formato numpydoc.
+Convertir los Jupyter notebooks existentes de <cite>.ipynb</cite> en archivos` .py` que
+<a class="reference external" href="https://fairlearn.github.io/auto_examples/notebooks/index.html">rendericen correctamente en el sitio web</a>,
+sin dejar de ser descargable como archivos <cite>.py</cite> o` .ipynb`.</p></li>
+<li><p><strong>Mejorar la usabilidad, la relevancia y el aspecto del sitio web de Fairlearn</strong>
+con la audiencia de practicantes en mente.
+Participe participando en los debates sobre
+<a class="reference external" href="comunidades_llamadas">llamadas de la comunidad</a> o en las correspondientes
+<a class="reference external" href="https://github.com/fairlearn/fairlearn/discussions">discusiones</a>.
+También puede enviarnos sus comentarios presentando un nuevo número.</p></li>
+<li><p><strong>Mejorar la usabilidad y relevancia de las métricas de equidad</strong> al
+criticar y mejorar la API de métricas actual, sugiriendo nuevas métricas
+motivadas por casos de uso concretos e implementando las nuevas métricas.
+La página de problemas
+<a class="reference external" href="https://github.com/fairlearn/fairlearn/issues?q=is%3Aissue+is%3Aopen+metric">contiene varias tareas de métricas</a>.</p></li>
+<li><p><strong>Avanzar hacia la compatibilidad con scikit-learn</strong>:
+identificar aspectos incompatibles, mejorar el código hacia la compatibilidad.
+Si bien nuestro objetivo es la compatibilidad, puede haber aspectos que sean demasiado
+restringidos para Fairlearn, por lo que esto puede necesitar ser evaluado en un
+caso por caso.</p></li>
+</ul>
+</li>
+<li><p><em>Crecer y nutrir una comunidad diversa de colaboradores</em></p>
+<ul class="simple">
+<li><p><strong>Comuníquese</strong> con comentarios sobre lo que está funcionando y lo que
+no necesita mejorar; sugiera cómo mejorar las cosas; señale donde la
+documentación, procesos o cualquier otro aspecto del proyecto crean
+barreras de entrada.</p></li>
+<li><p><strong>Participe</strong> en nuestras <span class="xref std std-ref">llamadas comunitarias semanales</span>.
+También trabajamos con universidades para involucrar a estudiantes
+a través de proyectos y otras formas de
+colaboración — háganos saber si está interesado.</p></li>
+<li><p><strong>Mejorar el sitio web y la documentación de Fairlearn</strong>.
+Consulte la guía para colaboradores en
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/development/contributing_documentation.html#contributing-documentation" title="(in pandas v1.3.5)"><span class="xref std std-ref">cómo contribuir a nuestros documentos</span></a>.</p></li>
+<li><p><strong>Agregue pruebas de código y mejore la infraestructura de las pruebas.</strong></p></li>
+</ul>
+</li>
+<li><p><em>Crear métricas, herramientas de evaluación y algoritmos para cubrir tareas de aprendizaje automático más complejas</em></p>
+<ul class="simple">
+<li><p><strong>Crear material y casos de uso</strong> que se ocupen de
+<span class="xref std std-ref">problemas concretos de equidad</span>
+en tareas complejas de aprendizaje automático que incluyen clasificación, estimación contrafactual,
+procesamiento de texto, visión por computadora, habla, etc.</p></li>
+<li><p><strong>Liderar y participar en los esfuerzos de contribución</strong>
+en torno a áreas de aprendizaje automático poco investigadas, pero relevantes de manera
+práctica en la clasificación, estimación contrafactual, texto, visión por computadora,
+habla, etc. Es probable que estos sean esfuerzos mixtos de investigación / práctica y esperamos
+compromiso sustancial de los contribuyentes antes de embarcarse en estos.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="gobernanza">
+<span id="governance"></span><h2>Gobernanza<a class="headerlink" href="#gobernanza" title="Permalink to this headline">¶</a></h2>
+<p>Fairlearn es un proyecto de la
+<a class="reference external" href="https://github.com/fairlearn/governance/blob/main/ORG-GOVERNANCE.md">organización Fairlearn</a>
+y sigue el
+<a class="reference external" href="https://github.com/fairlearn/governance/blob/main/PROJECT-GOVERNANCE.md">gobierno de proyectos de la organización Fairlearn</a>.</p>
+<div class="section" id="mantenedores">
+<span id="maintainers"></span><h3>Mantenedores<a class="headerlink" href="#mantenedores" title="Permalink to this headline">¶</a></h3>
+<p>Los mantenedores actuales del proyecto Fairlearn son</p>
+<ul class="simple" id="id2">
+<li><p><a class="reference external" href="https://github.com/adrinjalali">Adrin Jalali</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hildeweerts">Hilde Weerts</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mmadaio">Michael Madaio</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MiroDudik">Miro Dudik</a></p></li>
+<li><p><a class="reference external" href="https://github.com/riedgar-ms">Richard Edgar</a></p></li>
+<li><p><a class="reference external" href="https://github.com/romanlutz">Roman Lutz</a></p></li>
+</ul>
+</div>
+<div class="section" id="traductores-a-espanol">
+<h3>Traductores a Español<a class="headerlink" href="#traductores-a-espanol" title="Permalink to this headline">¶</a></h3>
+<ul class="simple" id="traductores-espanol">
+<li><p><a class="reference external" href="https://github.com/lgfunderburk">Laura Gutierrez Funderburk</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="historia-del-proyecto">
+<span id="history"></span><h2>Historia del proyecto<a class="headerlink" href="#historia-del-proyecto" title="Permalink to this headline">¶</a></h2>
+<p>Fairlearn se inició en 2018 por Miro Dudik de Microsoft Research como un
+Paquete de Python para acompañar el trabajo de investigación,
+<a class="reference external" href="http://proceedings.mlr.press/v80/agarwal18a/agarwal18a.pdf">Un enfoque de reducciones para una clasificación justa</a>.
+El paquete proporcionó un algoritmo de reducción para mitigar la injusticia en
+modelos de clasificación binarios — un escenario que fue comúnmente estudiado en la
+comunidad de aprendizaje automático.
+El documento y el paquete de Python fueron bien recibidos, por lo que Miro Dudik y Hanna
+Wallach con sus colaboradores buscaron traducir la investigación en un
+contexto de la industria.
+Sin embargo, descubrieron que los profesionales normalmente necesitan abordar más
+cuestiones fundamentales de equidad antes de aplicar algoritmos específicos, y que
+mitigar la injusticia en los modelos de clasificación binaria es un uso relativamente raro
+caso.
+También descubrieron que la evaluación de la equidad es una necesidad común, junto con
+acceso a guías específicas del dominio para métricas de equidad y mitigación de injusticias
+algoritmos.
+Además, muchos casos de uso toman la forma de regresión o clasificación, en lugar de
+que la clasificación.
+Como resultado de estos conocimientos, la evaluación de la equidad y los cuadernos de casos de uso
+se convirtieron en componentes clave de Fairlearn.
+Fairlearn también se enfoca en tareas de aprendizaje automático más allá de la clasificación binaria.</p>
+<p>El proyecto se amplió enormemente en el segundo semestre de 2019 gracias a la
+participación de muchos colaboradores de Azure ML y Microsoft Research.
+En ese momento, el proyecto comenzó a tener lanzamientos regulares.</p>
+<p>En 2021 Fairlearn adoptó
+<a class="reference external" href="https://github.com/fairlearn/governance">gobernanza neutral</a>
+y desde entonces el proyecto está completamente impulsado por la comunidad.</p>
+</div>
+<div class="section" id="citando-a-fairlearn">
+<h2>Citando a Fairlearn<a class="headerlink" href="#citando-a-fairlearn" title="Permalink to this headline">¶</a></h2>
+<p>Si desea citar Fairlearn en su trabajo, utilice lo siguiente:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@techreport</span><span class="p">{</span><span class="n">bird2020fairlearn</span><span class="p">,</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Bird</span><span class="p">,</span> <span class="n">Sarah</span> <span class="ow">and</span> <span class="n">Dud</span><span class="p">{</span>\<span class="s1">&#39;i}k, Miro and Edgar, Richard and Horn, Brandon and Lutz, Roman and Milan, Vanessa and Sameki, Mehrnoosh and Wallach, Hanna and Walker, Kathleen},</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Fairlearn</span><span class="p">:</span> <span class="n">A</span> <span class="n">toolkit</span> <span class="k">for</span> <span class="n">assessing</span> <span class="ow">and</span> <span class="n">improving</span> <span class="n">fairness</span> <span class="ow">in</span> <span class="p">{</span><span class="n">AI</span><span class="p">}},</span>
+    <span class="n">institution</span> <span class="o">=</span> <span class="p">{</span><span class="n">Microsoft</span><span class="p">},</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2020</span><span class="p">},</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="p">{</span><span class="n">May</span><span class="p">},</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/&quot;</span><span class="p">,</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="p">{</span><span class="n">MSR</span><span class="o">-</span><span class="n">TR</span><span class="o">-</span><span class="mi">2020</span><span class="o">-</span><span class="mi">32</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preguntas-frecuentes">
+<h2>Preguntas frecuentes<a class="headerlink" href="#preguntas-frecuentes" title="Permalink to this headline">¶</a></h2>
+<p>Vea nuestra página <a class="reference internal" href="../preguntas_frequentes.html#preguntas-frequentes"><span class="std std-ref">Preguntas Frequentes</span></a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2018 - 2021, contribuyentes de Fairlearn.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

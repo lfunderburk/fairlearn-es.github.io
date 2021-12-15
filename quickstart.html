@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introducción &#8212; Fairlearn 0.7.0 documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Guía de Usuario" href="guia_usuario/index.html" />
+    <link rel="prev" title="¡Bienvenides a la documentación de Fairlearn!" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="https://fairlearn.org">
+  <img src="_static/fairlearn_full_color.svg" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Introducción
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="guia_usuario/index.html">
+  Guía de Usuario
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="auto_examples/index.html">
+  Ejemplos (Jupyter Notebooks)
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="preguntas_frequentes.html">
+  Preguntas Frequentes
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fairlearn/fairlearn" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fairlearn" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://stackoverflow.com/questions/tagged/fairlearn" rel="noopener" target="_blank" title="StackOverflow">
+            <span><i class="fab fa-stack-overflow"></i></span>
+            <label class="sr-only">StackOverflow</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://discord.gg/R22yCfgsRn" rel="noopener" target="_blank" title="Discord">
+            <span><i class="fab fa-discord"></i></span>
+            <label class="sr-only">Discord</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instalacion">
+   Instalación
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#descripcion-general-de-fairlearn">
+   Descripción general de Fairlearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fairlearn-en-10-minutos">
+   Fairlearn en 10 minutos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cargando-el-conjunto-de-datos">
+     Cargando el conjunto de datos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluacion-de-metricas-relacionadas-con-la-equidad">
+     Evaluación de métricas relacionadas con la equidad
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disminuyendo-los-imbalances">
+     Disminuyendo los imbalances
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#que-sigue">
+   ¿Qué sigue?
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="introduccion">
+<span id="quickstart"></span><h1>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="instalacion">
+<h2>Instalación<a class="headerlink" href="#instalacion" title="Permalink to this headline">¶</a></h2>
+<p>Fairlearn puede ser instalado usando <code class="code docutils literal notranslate"><span class="pre">pip</span></code> de
+<a class="reference external" href="https://pypi.org/project/fairlearn">PyPI</a> de la siguiente manera:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install fairlearn
+</pre></div>
+</div>
+<p>Fairlearn también está disponible a través de
+<a class="reference external" href="https://anaconda.org/conda-forge/fairlearn">conda-forge</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge fairlearn
+</pre></div>
+</div>
+<p>Para más información sobre cómo instalar Fairlearn y sus
+dependencias opcionales, consulte <span class="xref std std-ref">guía_instalación</span>.</p>
+<p>Si está actualizando desde una versión anterior de Fairlearn, consulte <span class="xref std std-ref">guía_versión</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La API de Fairlearn aún está evolucionando, por lo que es posible que el código de
+ejemplo de esta documentación no funcione con todas las versiones de Fairlearn.
+Utilice el selector de versión para obtener las instrucciones de la versión adecuada.
+Las instrucciones para la rama principal requieren que Fairlearn se instale desde un
+clon del repositorio.</p>
+</div>
+</div>
+<div class="section" id="descripcion-general-de-fairlearn">
+<h2>Descripción general de Fairlearn<a class="headerlink" href="#descripcion-general-de-fairlearn" title="Permalink to this headline">¶</a></h2>
+<p>El paquete Fairlearn tiene dos componentes:</p>
+<ul class="simple">
+<li><p><em>Métricas</em> para evaluar qué grupos se ven afectados negativamente por un modelo
+y para comparar varios modelos en términos de diversas métricas de equidad y precisión.</p></li>
+<li><p><em>Algoritmos</em> para mitigar la injusticia en una variedad de tareas de IA y en una variedad de definiciones de equidad.</p></li>
+</ul>
+</div>
+<div class="section" id="fairlearn-en-10-minutos">
+<h2>Fairlearn en 10 minutos<a class="headerlink" href="#fairlearn-en-10-minutos" title="Permalink to this headline">¶</a></h2>
+<p>El conjunto de herramientas de Fairlearn puede ayudar a evaluar y mitigar la injusticia en
+Modelos de Aprendizaje Automático (MAA). Es imposible proporcionar una descripción general suficiente de
+equidad en MAA en este tutorial de inicio rápido, por lo que recomendamos comenzar
+con nuestra: ref: <cite>guía_usuario</cite>. La equidad es fundamentalmente un
+desafío socio técnico y no se puede resolver con herramientas técnicas solamente.
+Pueden ser de ayuda para ciertas tareas, como evaluar la injusticia a través de
+varias métricas, o para mitigar la injusticia observada al entrenar un modelo.
+Además, la equidad tiene diferentes definiciones en diferentes contextos y puede que no sea posible
+representarlo cuantitativamente en absoluto.</p>
+<p>Dadas estas consideraciones, este tutorial de inicio rápido simplemente proporciona breves
+ejemplos de fragmentos de código de cómo utilizar la funcionalidad básica de Fairlearn para aquellos
+que ya están íntimamente familiarizados con la equidad en MAA. El siguiente ejemplo
+se trata de clasificación binaria, pero también apoyamos la regresión.</p>
+<div class="section" id="cargando-el-conjunto-de-datos">
+<h3>Cargando el conjunto de datos<a class="headerlink" href="#cargando-el-conjunto-de-datos" title="Permalink to this headline">¶</a></h3>
+<p>Para este ejemplo usamos el
+<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Adult">Conjunto de datos de adultos UCI</a> donde el
+el objetivo es predecir si una persona gana más (etiqueta 1) o menos (0)
+de $ 50.000 al año.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">data_id</span><span class="o">=</span><span class="mi">1590</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_true</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;&gt;50K&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sex</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sex</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="go">Male      32650</span>
+<span class="go">Female    16192</span>
+<span class="go">Name: sex, dtype: int64</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="auto_examples/plot_quickstart_selection_rate.html"><img alt="_images/sphx_glr_plot_quickstart_selection_rate_001.png" src="_images/sphx_glr_plot_quickstart_selection_rate_001.png" /></a>
+</div>
+</div>
+<div class="section" id="evaluacion-de-metricas-relacionadas-con-la-equidad">
+<h3>Evaluación de métricas relacionadas con la equidad<a class="headerlink" href="#evaluacion-de-metricas-relacionadas-con-la-equidad" title="Permalink to this headline">¶</a></h3>
+<p>En primer lugar, Fairlearn proporciona métricas relacionadas con la equidad que se pueden comparar
+entre grupos y para la población en general. Usando métrica existente
+definiciones de
+<a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">scikit-learn</a>
+podemos evaluar métricas para subgrupos dentro de los datos de la siguiente manera:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">MetricFrame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classifier</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
+<span class="go">DecisionTreeClassifier(...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sex</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">overall</span><span class="p">)</span>
+<span class="go">0.8443...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="go">sex</span>
+<span class="go">Female    0.9251...</span>
+<span class="go">Male      0.8042...</span>
+<span class="go">Name: accuracy_score, dtype: object</span>
+</pre></div>
+</div>
+<p>Además, Fairlearn tiene muchas otras métricas estándar integradas, como
+tasa de selección, es decir, el porcentaje de la población que tiene ‘1’ como
+su etiqueta:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">selection_rate</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sr</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">selection_rate</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sex</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sr</span><span class="o">.</span><span class="n">overall</span>
+<span class="go">0.1638...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sr</span><span class="o">.</span><span class="n">by_group</span>
+<span class="go">sex</span>
+<span class="go">Female    0.0635...</span>
+<span class="go">Male      0.2135...</span>
+<span class="go">Name: selection_rate, dtype: object</span>
+</pre></div>
+</div>
+<p>Fairlearn también nos permite trazar rápidamente estas métricas desde
+<code class="xref py py-class docutils literal notranslate"><span class="pre">fairlearn.metrics.MetricFrame</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">,</span>
+    <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">,</span>
+    <span class="s2">&quot;false positive rate&quot;</span><span class="p">:</span> <span class="n">false_positive_rate</span><span class="p">,</span>
+    <span class="s2">&quot;true positive rate&quot;</span><span class="p">:</span> <span class="n">true_positive_rate</span><span class="p">,</span>
+    <span class="s2">&quot;selection rate&quot;</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">,</span>
+    <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">metric_frame</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sex</span>
+<span class="p">)</span>
+<span class="n">metric_frame</span><span class="o">.</span><span class="n">by_group</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Show all metrics&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="auto_examples/plot_quickstart.html"><img alt="_images/sphx_glr_plot_quickstart_001.png" src="_images/sphx_glr_plot_quickstart_001.png" /></a>
+</div>
+</div>
+<div class="section" id="disminuyendo-los-imbalances">
+<h3>Disminuyendo los imbalances<a class="headerlink" href="#disminuyendo-los-imbalances" title="Permalink to this headline">¶</a></h3>
+<p>Si observamos imbalances entre grupos, es posible que deseemos crear un nuevo modelo.
+mientras se especifica una restricción de equidad adecuada. Tenga en cuenta que la elección de
+Las restricciones de equidad son cruciales para el modelo resultante y varían en función de
+contexto de la aplicación. Si la tasa de selección es muy relevante para la equidad en este
+ejemplo artificial, podemos intentar mitigar la disparidad observada utilizando el
+restricción de equidad correspondiente denominada paridad demográfica. En el mundo real
+aplicaciones tenemos que ser conscientes del contexto socio técnico al hacer
+tales decisiones. La técnica de mitigación de gradiente exponencial utilizada se ajusta al
+proporcionó un clasificador utilizando la paridad demográfica como objetivo, lo que
+una diferencia enormemente reducida en la tasa de selección:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fairlearn.reductions</span> <span class="kn">import</span> <span class="n">ExponentiatedGradient</span><span class="p">,</span> <span class="n">DemographicParity</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># set seed for consistent results with ExponentiatedGradient</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">constraint</span> <span class="o">=</span> <span class="n">DemographicParity</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">classifier</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mitigator</span> <span class="o">=</span> <span class="n">ExponentiatedGradient</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">constraint</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mitigator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sex</span><span class="p">)</span>
+<span class="go">ExponentiatedGradient(...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred_mitigated</span> <span class="o">=</span> <span class="n">mitigator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sr_mitigated</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">selection_rate</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred_mitigated</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sex</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sr_mitigated</span><span class="o">.</span><span class="n">overall</span><span class="p">)</span>
+<span class="go">0.1661...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sr_mitigated</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="go">sex</span>
+<span class="go">Female    0.1552...</span>
+<span class="go">Male      0.1715...</span>
+<span class="go">Name: selection_rate, dtype: object</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="que-sigue">
+<h2>¿Qué sigue?<a class="headerlink" href="#que-sigue" title="Permalink to this headline">¶</a></h2>
+<p>Consulte nuestra <span class="xref std std-ref">guía_usuario</span> para obtener una visión completa de la equidad en
+aprendizaje automático y cómo encaja Fairlearn, así como una guía exhaustiva sobre
+todas las partes del juego de herramientas. Para obtener ejemplos concretos, consulte
+la sección <a class="reference internal" href="auto_examples/index.html#sphx-glr-auto-examples"><span class="std std-ref">Ejemplos (Jupyter Notebooks)</span></a>. Finalmente, también tenemos una colección
+de <a class="reference internal" href="preguntas_frequentes.html#preguntas-frequentes"><span class="std std-ref">Preguntas Frequentes</span></a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2018 - 2021, contribuyentes de Fairlearn.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
