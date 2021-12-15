@@ -19,9 +19,9 @@ from fairlearn.metrics import MetricFrame
 # Resultados multiclase y no escalares
 # ====================================
 #
-# Supongamos que tenemos un problema multiclase, con etiquetas :math:`\ in {0, 1, 2}`,
+# Supongamos que tenemos un problema multiclase, con etiquetas :math:`\in {0, 1, 2}`,
 # y que deseamos generar matrices de confusión para cada subgrupo
-# identificado por la característica sensible :math:`\ in {a, b, c, d}`.
+# identificado por la característica sensible :math:`\in {a, b, c, d}`.
 # Esto es apoyado fácilmente por
 # :class:`~ fairlearn.metrics.MetricFrame`, que no requiere
 # el resultado de una métrica para ser un escalar.

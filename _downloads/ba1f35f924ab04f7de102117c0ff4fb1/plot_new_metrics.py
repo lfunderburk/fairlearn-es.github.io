@@ -2,54 +2,54 @@
 # Licensed under the MIT License.
 
 """
-==============================
-Metrics with Multiple Features
-==============================
+================================
+Métricas con múltiples funciones
+================================
 """
 # %%
-# This notebook demonstrates the new API for metrics, which supports
-# multiple sensitive and conditional features. This example does not
-# contain a proper discussion of how fairness relates to the dataset
-# used, although it does highlight issues which users may want to
-# consider when analysing their datasets.
+# Este notebook muestra la nueva API para métricas, que admite
+# múltiples características sensibles y condicionales. Este ejemplo no
+# contiene una discusión adecuada sobre cómo la justicia se relaciona con el conjunto de datos
+# utilizado, aunque resalta problemas que los usuarios pueden querer
+# considere al analizar sus conjuntos de datos.
 #
-# We are going to consider a lending scenario, supposing that we have
-# a model which predicts whether or not a particular customer will
-# repay a loan. This could be used as the basis of deciding whether
-# or not to offer that customer a loan. With traditional metrics,
-# we would assess the model using:
+# Vamos a considerar un escenario de préstamo de crédito, suponiendo que tengamos
+# un modelo que predice si un cliente en particular
+# va a reembolsar un préstamo. Esto podría utilizarse como base para decidir si
+# o no ofrecer un préstamo a ese cliente. Con métricas tradicionales,
+# evaluaríamos el modelo usando:
 #
-# - The 'true' values from the test set
-# - The model predictions from the test set
+# - Los valores 'verdaderos' del conjunto de prueba
+# - Las predicciones del modelo del conjunto de prueba
 #
-# Our fairness metrics compute group-based fairness statistics.
-# To use these, we also need categorical columns from the test
-# set. For this example, we will include:
+# Nuestras métricas de equidad calculan estadísticas de equidad basadas en grupos.
+# Para usar estos, también necesitamos columnas categóricas del conjunto de prueba.
+# Para este ejemplo, incluiremos:
 #
-# - The sex of each individual (two unique values)
-# - The race of each individual (three unique values)
-# - The credit score band of each individual (three unique values)
-# - Whether the loan is considered 'large' or 'small'
+# - El sexo de cada individuo (dos valores únicos)
+# - La raza de cada individuo (tres valores únicos)
+# - La categoría de puntaje crediticio de cada individuo (tres valores únicos)
+# - Si el préstamo se considera 'grande' o 'pequeño'
 #
-# An individual's sex and race should not affect a lending decision,
-# but it would be legitimate to consider an individual's credit score
-# and the relative size of the loan which they desired.
+# El sexo y la raza de una persona no deben afectar la decisión de un préstamo,
+# pero sería legítimo considerar el puntaje crediticio de una persona
+# y el tamaño relativo del préstamo que deseaban.
 #
-# A real scenario will be more complicated, but this will serve to
-# illustrate the use of the new metrics.
+# Un escenario real será más complicado, pero esto servirá para
+# ilustrar el uso de las nuevas métricas.
 #
-# Getting the Data
-# ================
+# Obteniendo los datos
+# ====================
 #
-# *This section may be skipped. It simply creates a dataset for
-# illustrative purposes*
+# *Esta sección se puede omitir. Simplemente crea un conjunto de datos para
+# fines ilustrativos*
 #
-# We will use the well-known UCI 'Adult' dataset as the basis of this
-# demonstration. This is not for a lending scenario, but we will regard
-# it as one for the purposes of this example. We will use the existing
-# 'race' and 'sex' columns (trimming the former to three unique values),
-# and manufacture credit score bands and loan sizes from other columns.
-# We start with some uncontroversial `import` statements:
+# Utilizaremos el conocido conjunto de datos UCI 'Adult' como base de este
+# demostración. Esto no es para un escenario de préstamos, pero consideraremos
+# como uno para los propósitos de este ejemplo. Usaremos el existente
+# columnas 'raza' y 'sexo' (recortando la primera a tres valores únicos),
+# y fabrique bandas de puntaje crediticio y tamaños de préstamos a partir de otras columnas.
+# Comenzamos con algunas declaraciones de `importación`:
 
 import functools
 import numpy as np
@@ -69,15 +69,15 @@ from fairlearn.metrics import selection_rate, count
 
 
 # %%
-# Next, we import the data:
+# A continuación, importamos los datos:
 
 data = fetch_openml(data_id=1590, as_frame=True)
 X_raw = data.data
 y = (data.target == ">50K") * 1
 
 # %%
-# For purposes of clarity, we consolidate the 'race' column to have
-# three unique values:
+# Para mayor claridad, consolidamos la columna 'raza' para tener
+# tres valores únicos:
 
 
 def race_transform(input_str):
@@ -94,10 +94,10 @@ X_raw["race"] = (
 print(np.unique(X_raw["race"]))
 
 # %%
-# Now, we manufacture the columns for the credit score band and
-# requested loan size. These are wholly constructed, and not
-# part of the actual dataset in any way. They are simply for
-# illustrative purposes.
+# Después, fabricamos las columnas para la banda de calificación crediticia y
+# tamaño del préstamo solicitado. Estos están hipotéticos, y no
+# parte del conjunto de datos real de alguna manera. Son simplemente para
+# fines ilustrativos.
 
 
 def marriage_transform(m_s_string):
@@ -129,20 +129,18 @@ A["Loan Size"] = col_loan_size
 A
 
 # %%
-# Now that we have imported our dataset and manufactured a few features, we
-# can perform some more conventional processing. To avoid the problem of
-# `data leakage <https://en.wikipedia.org/wiki/Leakage_(machine_learning)>`_,
-# we need to split the data into training and test sets before applying
-# any transforms or scaling:
-
+# Ahora que hemos importado nuestro conjunto de datos y fabricado algunas funciones,
+# podemos realizar un procesamiento más convencional. Para evitar el problema de
+# `fuga de datos <https://en.wikipedia.org/wiki/Leakage_ (machine_learning)>`_,
+# necesitamos dividir los datos en conjuntos de prueba y entrenamiento antes de aplicar
+# cualquier transformación o escala:
 
 (X_train, X_test, y_train, y_test, A_train, A_test) = train_test_split(
     X_raw, y, A, test_size=0.3, random_state=54321, stratify=y
 )
 
-# Ensure indices are aligned between X, y and A,
-# after all the slicing and splitting of DataFrames
-# and Series
+# Asegúrese de que los índices estén alineados entre X, y, A,
+# después de seleccionar y dividir el marco de datos en Series.
 
 X_train = X_train.reset_index(drop=True)
 X_test = X_test.reset_index(drop=True)
@@ -152,15 +150,15 @@ A_train = A_train.reset_index(drop=True)
 A_test = A_test.reset_index(drop=True)
 
 # %%
-# Next, we build two :class:`~sklearn.pipeline.Pipeline` objects
-# to process the columns, one for numeric data, and the other
-# for categorical data. Both impute missing values; the difference
-# is whether the data are scaled (numeric columns) or
-# one-hot encoded (categorical columns). Imputation of missing
-# values should generally be done with care, since it could
-# potentially introduce biases. Of course, removing rows with
-# missing data could also cause trouble, if particular subgroups
-# have poorer data quality.
+# A continuación, construimos dos objetos :class:`~ sklearn.pipeline.Pipeline`
+# para procesar las columnas, una para datos numéricos y la otra
+# para datos categóricos. Ambos imputan valores perdidos; la diferencia
+# es si los datos están escalados (columnas numéricas) o
+# tienen codificación one-hot (columnas categóricas). Imputación de
+# valores faltantes generalmente deben hacerse con cuidado, ya que esto podría
+# introducir sesgos potencialmente. Por supuesto, eliminar filas con
+# los datos faltantes también puede causar problemas, si subgrupos particulares
+# tienen datos de peor calidad.
 
 numeric_transformer = Pipeline(
     steps=[("impute", SimpleImputer()), ("scaler", StandardScaler())]
@@ -179,8 +177,8 @@ preprocessor = ColumnTransformer(
 )
 
 # %%
-# With our preprocessor defined, we can now build a
-# new pipeline which includes an Estimator:
+# Con nuestro preprocesador definido, ahora podemos construir un
+# nueva canalización que incluye un Estimador:
 
 unmitigated_predictor = Pipeline(
     steps=[
@@ -193,42 +191,41 @@ unmitigated_predictor = Pipeline(
 )
 
 # %%
-# With the pipeline fully defined, we can first train it
-# with the training data, and then generate predictions
-# from the test data.
+# Con la pipeline (tubería) completamente definida, primero podemos entrenarla
+# con los datos de entrenamiento y luego generar predicciones
+# utilizando los datos de prueba.
 
 unmitigated_predictor.fit(X_train, y_train)
 y_pred = unmitigated_predictor.predict(X_test)
 
 
 # %%
-# Analysing the Model with Metrics
+# Analizando el modelo con métricas
 # ================================
 #
-# After our data manipulations and model training, we have the following
-# from our test set:
+# Después del formateo de datos y entrenamiento de modelos, tenemos lo siguiente
+# de nuestro conjunto de prueba:
 #
-# - A vector of true values called ``y_test``
-# - A vector of model predictions called ``y_pred``
-# - A DataFrame of categorical features relevant to fairness called ``A_test``
+# - Un vector de valores verdaderos llamado ``y_test``
+# - Un vector de predicciones del modelo llamado ``y_pred``
+# - Un DataFrame (tabla de datos) con características categóricas relevantes para la equidad llamado ``A_test``
 #
-# In a traditional model analysis, we would now look at some metrics
-# evaluated on the entire dataset. Suppose in this case, the relevant
-# metrics are :func:`fairlearn.metrics.selection_rate` and
-# :func:`sklearn.metrics.fbeta_score` (with
-# ``beta=0.6``).
-# We can evaluate these metrics directly:
+# Si fuésemos a utilizar un análisis de modelo tradicional, utilizaríamos algunas métricas
+# que evalúan el conjunto de datos completo. Supongamos que en este caso,
+# las métricas relevantes son :func:`fairlearn.metrics.selection_rate` y
+# :func:`sklearn.metrics.fbeta_score` (con
+# `beta = 0.6``).
+# Podemos evaluar estas métricas directamente:
 
 print("Selection Rate:", selection_rate(y_test, y_pred))
 print("fbeta:", skm.fbeta_score(y_test, y_pred, beta=0.6))
 
 # %%
-# We know that there are sensitive features in our data, and we want to
-# ensure that we're not harming individuals due to membership in any of
-# these groups. For this purpose, Fairlearn provides the
-# :class:`fairlearn.metrics.MetricFrame`
-# class. Let us construct an instance of this class, and then look at
-# its capabilities:
+# Sabemos que hay características sensibles en nuestros datos y queremos
+# asegurarnos de no dañar a las personas debido a su membresía en
+# estos grupos. Para este propósito, Fairlearn proporciona la clase
+# :clase:`fairlearn.metrics.MetricFrame`. Construyamos una instancia de esta clase y luego miremos
+# sus capacidades:
 
 fbeta_06 = functools.partial(skm.fbeta_score, beta=0.6, zero_division=1)
 
@@ -246,27 +243,27 @@ grouped_on_sex = MetricFrame(
 )
 
 # %%
-# The :class:`fairlearn.metrics.MetricFrame` object requires a
-# minimum of four arguments:
+# La clase :class:`fairlearn.metrics.MetricFrame` requiere un
+# mínimo de cuatro argumentos:
 #
-# 1. The underlying metric function(s) to be evaluated
-# 2. The true values
-# 3. The predicted values
-# 4. The sensitive feature values
+# 1. Las funciones métricas que se evaluarán
+# 2. Los valores verdaderos
+# 3. Los valores predichos
+# 4. Los valores de las características sensibles
 #
-# These are all passed as arguments to the constructor. If more than
-# one underlying metric is required (as in this case), then we must
-# provide them in a dictionary.
+# Todos estos se pasan como argumentos al constructor. Si más de una métrica
+# se requiere(como en este caso), entonces debemos
+# proporcionarlos en un diccionario.
 #
-# The underlying metrics must have a signature ``fn(y_true, y_pred)``,
-# so we have to use :func:`functools.partial` on ``fbeta_score()`` to
-# furnish ``beta=0.6`` (we will show how to pass in extra array
-# arguments such as sample weights shortly).
+# Las métricas deben tener una firma ``fn (y_true, y_pred)``,
+# entonces tenemos que usar :func:`functools.partial` en ``fbeta_score()`` para
+# proporcionar ``beta = 0.6`` (mostraremos cómo pasar una lista con
+# argumentos como ponderaciones de muestra en breve).
 #
-# We will now take a closer look at the :class:`fairlearn.metrics.MetricFrame`
-# object. First, there is the ``overall`` property, which contains
-# the metrics evaluated on the entire dataset. We see that this contains the
-# same values calculated above:
+# Ahora echaremos un vistazo más de cerca a :class:`fairlearn.metrics.MetricFrame`.
+# Primero, está la propiedad ``overall``, que contiene
+# las métricas evaluadas en el conjunto de datos completo. Vemos que esto contiene el
+# mismos valores calculados anteriormente:
 
 assert grouped_on_sex.overall["selection_rate"] == selection_rate(
     y_test, y_pred
@@ -277,20 +274,20 @@ assert grouped_on_sex.overall["fbeta_06"] == skm.fbeta_score(
 print(grouped_on_sex.overall)
 
 # %%
-# The other property in the :class:`fairlearn.metrics.MetricFrame` object
-# is ``by_group``. This contains the metrics evaluated on each subgroup defined
-# by the categories in the ``sensitive_features=`` argument. Note that
-# :func:`fairlearn.metrics.count` can be used to display the number of
-# data points in each subgroup. In this case, we have results for males and females:
+# La otra propiedad en :class:`fairlearn.metrics.MetricFrame`
+# es ``by_group``, el cual contiene las métricas evaluadas en cada subgrupo definido
+# por las categorías en el argumento ``sensitive_features =``. Tenga en cuenta que
+# :func:`fairlearn.metrics.count` se puede usar para mostrar el número de
+# puntos de datos en cada subgrupo. En este caso, tenemos resultados para hombres y mujeres:
 
 grouped_on_sex.by_group
 
 # %%
-# We can immediately see a substantial disparity in the selection rate between
-# males and females.
+# Podemos ver inmediatamente una disparidad sustancial en la tasa de selección entre
+# masculinos y femeninos.
 #
-# We can also create another :class:`fairlearn.metrics.MetricFrame` object
-# using race as the sensitive feature:
+# También podemos crear otro objeto :class:`fairlearn.metrics.MetricFrame`
+# usando la raza como característica sensible:
 
 grouped_on_race = MetricFrame(
     metrics=metric_fns,
@@ -300,36 +297,37 @@ grouped_on_race = MetricFrame(
 )
 
 # %%
-# The ``overall`` property is unchanged:
+# La propiedad ``overall`` no cambia:
+
 assert (grouped_on_sex.overall == grouped_on_race.overall).all()
 
 # %%
-# The ``by_group`` property now contains the metrics evaluated based on the 'race'
-# column:
+# La propiedad ``by_group`` ahora contiene las métricas evaluadas según la columna 'raza':
+
 grouped_on_race.by_group
 
 # %%
-# We see that there is also a significant disparity in selection rates when
-# grouping by race.
+# Vemos que también existe una disparidad significativa en las tasas de selección cuando
+# agrupación por raza.
 
 # %%
-# Sample weights and other arrays
-# -------------------------------
+# Muestras de pesos y otras matrices
+# ----------------------------------
 #
-# We noted above that the underlying metric functions passed to the
-# :class:`fairlearn.metrics.MetricFrame` constructor need to be of
-# the form ``fn(y_true, y_pred)`` - we do not support scalar arguments
-# such as ``pos_label=`` or ``beta=`` in the constructor. Such
-# arguments should be bound into a new function using
-# :func:`functools.partial`, and the result passed in. However, we do
-# support arguments which have one entry for each sample, with an array
-# of sample weights being the most common example. These are divided
-# into subgroups along with ``y_true`` and ``y_pred``, and passed along
-# to the underlying metric.
+# Observamos anteriormente que las funciones métricas subyacentes pasaron al
+# constructor :class:`fairlearn.metrics.MetricFrame` debe ser de
+# la forma ``fn (y_true, y_pred)`` - no admitimos argumentos escalares
+# como ``pos_label =`` o ``beta =`` en el constructor. Dichos
+# argumentos deben estar vinculados a una nueva función usando
+# :func:`functools.partial`, junto con el resultado. Sin embargo, Fairlearn también apoya
+# argumentos que tienen solo un elemento por cada muestra, con una matriz
+# de pesos de muestra es el ejemplo más común. Estos están divididos
+# en subgrupos junto con ``y_true`` y ``y_pred``, y se pasan
+# a la métrica subyacente.
 #
-# To use these arguments, we pass in a dictionary as the ``sample_params=``
-# argument of the constructor. Let us generate some random weights, and
-# pass these along:
+# Para usar estos argumentos, pasamos en un diccionario como `` sample_params =``
+# argumento del constructor. Generemos algunos pesos aleatorios y
+# pásales estos:
 
 random_weights = np.random.rand(len(y_test))
 
@@ -348,7 +346,8 @@ grouped_with_weights = MetricFrame(
 )
 
 # %%
-# We can inspect the overall values, and check they are as expected:
+# Podemos inspeccionar los valores generales y verificar que sean los esperados:
+
 assert grouped_with_weights.overall["selection_rate"] == selection_rate(
     y_test, y_pred, sample_weight=random_weights
 )
@@ -358,69 +357,74 @@ assert grouped_with_weights.overall["fbeta_06"] == skm.fbeta_score(
 print(grouped_with_weights.overall)
 
 # %%
-# We can also see the effect on the metric being evaluated on the subgroups:
+# También podemos ver el efecto sobre la métrica que se evalúa en los subgrupos:
+
 grouped_with_weights.by_group
 
 # %%
-# Quantifying Disparities
-# =======================
+# Cuantificación de disparidades
+# ==============================
 #
-# We now know that our model is selecting individuals who are female far less
-# often than individuals who are male. There is a similar effect when
-# examining the results by race, with blacks being selected far less often than
-# whites (and those classified as 'other'). However, there are many cases where
-# presenting all these numbers at once will not be useful (for example, a high
-# level dashboard which is monitoring model performance). Fairlearn provides
-# several means of aggregating metrics across the subgroups, so that disparities
-# can be readily quantified.
+# Ahora sabemos que nuestro modelo está seleccionando individuos que son mujeres mucho menos
+# a menudo que los hombres. Hay un efecto similar cuando
+# examinando los resultados por raza, y los negros son seleccionados con mucha menos frecuencia que
+# blancos (y los clasificados como 'otros'). Sin embargo, hay muchos casos en los que
+# presentar todos estos números a la vez no será útil (por ejemplo, un
+# tablero de alto nivel que monitorea el desempeño del modelo). Fairlearn ofrece
+# varios medios de agregar métricas en los subgrupos, de modo que las disparidades
+# pueden cuantificarse fácilmente.
 #
-# The simplest of these aggregations is ``group_min()``, which reports the
-# minimum value seen for a subgroup for each underlying metric (we also provide
-# ``group_max()``). This is
-# useful if there is a mandate that "no subgroup should have an ``fbeta_score()``
-# of less than 0.6." We can evaluate the minimum values easily:
+# La más simple de estas agregaciones es ``group_min()``, que informa el
+# valor mínimo visto para un subgrupo para cada métrica subyacente (también proporcionamos
+# ``group_max()``). Esto es
+# útil si hay un mandato de que "ningún subgrupo debe tener un ``fbeta_score()``
+# de menos de 0.6". Podemos evaluar los valores mínimos fácilmente:
+
 grouped_on_race.group_min()
 
 # %%
-# As noted above, the selection rates varies greatly by race and by sex.
-# This can be quantified in terms of a difference between the subgroup with
-# the highest value of the metric, and the subgroup with the lowest value.
-# For this, we provide the method ``difference(method='between_groups)``:
+# Como se señaló anteriormente, las tasas de selección varían mucho según la raza y el sexo.
+# Esto se puede cuantificar en términos de una diferencia entre el subgrupo con
+# el valor más alto de la métrica y el subgrupo con el valor más bajo.
+# Para esto, proporcionamos el método ``difference(method ='between_groups)``:
+
 grouped_on_race.difference(method="between_groups")
 
 # %%
-# We can also evaluate the difference relative to the corresponding overall
-# value of the metric. In this case we take the absolute value, so that the
-# result is always positive:
+# También podemos evaluar la diferencia relativa que corresponde al
+# valor total de la métrica. En este caso tomamos el valor absoluto, de modo que el
+# el resultado es siempre positivo:
+
 grouped_on_race.difference(method="to_overall")
 
 # %%
-# There are situations where knowing the ratios of the metrics evaluated on
-# the subgroups is more useful. For this we have the ``ratio()`` method.
-# We can take the ratios between the minimum and maximum values of each metric:
+# Hay situaciones en las que conocer los radios de las métricas evaluadas en
+# los subgrupos es más útil. Para ello tenemos el método ``ratio()``.
+# Podemos tomar las relaciones entre los valores mínimo y máximo de cada métrica:
+
 grouped_on_race.ratio(method="between_groups")
 
 # %%
-# We can also compute the ratios relative to the overall value for each
-# metric. Analogous to the differences, the ratios are always in the range
-# :math:`[0,1]`:
+# También podemos calcular los radios relativos al valor general de cada
+# métrica. De manera análoga a las diferencias, las proporciones están siempre en el rango
+# :math: `[0,1]`:
+
 grouped_on_race.ratio(method="to_overall")
 
 # %%
-# Intersections of Features
-# =========================
+# Intersección de características
+# =================================
 #
-# So far we have only considered a single sensitive feature at a time,
-# and we have already found some serious issues in our example data.
-# However, sometimes serious issues can be hiding in intersections of
-# features. For example, the
-# `Gender Shades project <https://www.media.mit.edu/projects/gender-shades/overview/>`_
-# found that facial recognition algorithms performed worse for blacks
-# than whites, and also worse for women than men (despite overall high
-# accuracy score). Moreover, performance on black females was *terrible*.
-# We can examine the intersections of sensitive features by passing
-# multiple columns to the :class:`fairlearn.metrics.MetricFrame`
-# constructor:
+# Hasta ahora, solo hemos considerado una característica sensible a la vez,
+# y ya hemos encontrado algunos problemas graves en nuestros datos de ejemplo.
+# Sin embargo, a veces se pueden esconder problemas graves en las intersecciones de
+# características. Por ejemplo, el
+# `Proyecto Gender Shades <https://www.media.mit.edu/projects/gender-shades/overview/>`_
+# descubrió que los algoritmos de reconocimiento facial funcionaban peor para los negros
+# que los blancos, y también peor para las mujeres que para los hombres (a pesar de la alta
+# puntuación de precisión). Además, el rendimiento en mujeres negras fue *terrible*.
+# Podemos examinar las intersecciones de características sensibles pasando
+# varias columnas para el constructor :class:`fairlearn.metrics.MetricFrame`:
 
 grouped_on_race_and_sex = MetricFrame(
     metrics=metric_fns,
@@ -430,40 +434,43 @@ grouped_on_race_and_sex = MetricFrame(
 )
 
 # %%
-# The overall values are unchanged, but the ``by_group`` table now
-# shows the intersections between subgroups:
+# Los valores generales no han cambiado, pero la tabla ``by_group`` ahora
+# muestra las intersecciones entre subgrupos:
+
 assert (grouped_on_race_and_sex.overall == grouped_on_race.overall).all()
 grouped_on_race_and_sex.by_group
 
 # %%
-# The aggregations are still performed across all subgroups for each metric,
-# so each continues to reduce to a single value. If we look at the
-# ``group_min()``, we see that we violate the mandate we specified for the
-# ``fbeta_score()`` suggested above (for females with a race of 'Other' in
-# fact):
+# Las agregaciones aún se realizan en todos los subgrupos para cada métrica,
+# para que cada uno continúe reduciéndose a un solo valor. Si miramos
+# `` group_min()``, vemos que violamos el mandato que especificamos para
+# `` fbeta_score()`` sugerido arriba (para mujeres con una raza de 'Otro'):
+
 grouped_on_race_and_sex.group_min()
 
 # %%
-# Looking at the ``ratio()`` method, we see that the disparity is worse
-# (specifically between white males and black females, if we check in
-# the ``by_group`` table):
+# Mirando el método ``ratio()``, vemos que la disparidad es peor
+# (específicamente entre hombres blancos y mujeres negras, si revisamos
+# la tabla ``by_group``):
+
 grouped_on_race_and_sex.ratio(method="between_groups")
 
 # %%
-# Control Features
-# ================
+# Funciones de control
+# ====================
 #
-# There is a further way we can slice up our data. We have (*completely
-# made up*) features for the individuals' credit scores (in three bands)
-# and also the size of the loan requested (large or small). In our loan
-# scenario, it is acceptable that individuals with high credit scores
-# are selected more often than individuals with low credit scores.
-# However, within each credit score band, we do not want a disparity
-# between (say) black females and white males. To example these cases,
-# we have the concept of *control features*.
+# Hay otra forma en que podemos dividir nuestros datos. Tenemos (*completamente
+# inventadas*) características para los puntajes crediticios de las personas (en tres rangos)
+# y también el tamaño del préstamo solicitado (grande o pequeño). En el escenario de préstamo,
+# es aceptable que las personas con puntajes crediticios altos
+# sean seleccionadas con más frecuencia que las personas con puntajes crediticios bajos.
+# Sin embargo, dentro de cada rango de puntaje crediticio, no queremos una disparidad
+# entre (digamos) mujeres negras y hombres blancos. Para ejemplificar estos casos,
+# tenemos el concepto de *funciones de control*.
 #
-# Control features are introduced by the ``control_features=``
-# argument to the :class:`fairlearn.metrics.MetricFrame` object:
+# Las funciones de control son introducidas por el argumento ``control_features =``
+# del objeto :class:`fairlearn.metrics.MetricFrame`:
+
 cond_credit_score = MetricFrame(
     metrics=metric_fns,
     y_true=y_test,
@@ -473,30 +480,32 @@ cond_credit_score = MetricFrame(
 )
 
 # %%
-# This has an immediate effect on the ``overall`` property. Instead
-# of having one value for each metric, we now have a value for each
-# unique value of the control feature:
+# Esto tiene un efecto inmediato en la propiedad ``overall``. En lugar
+# de tener un valor para cada métrica, ahora tenemos un valor para cada
+# valor único de la función de control:
+
 cond_credit_score.overall
 
 # %%
-# The ``by_group`` property is similarly expanded:
+# La propiedad ``by_group`` es demostrada de manera similar:
 cond_credit_score.by_group
 
 # %%
-# The aggregates are also evaluated once for each group identified
-# by the control feature:
+# Los agregados de datos también se evalúan una vez para cada grupo identificado
+# por la función de control:
+
 cond_credit_score.group_min()
 
 # %%
-# And:
+# Y:
 cond_credit_score.ratio(method="between_groups")
 
 # %%
-# In our data, we see that we have a dearth of positive results
-# for high income non-whites, which significantly affects the
-# aggregates.
+# En nuestros datos, vemos que tenemos una escasez de resultados positivos
+# para aquellos que no blancos y que tienen altos ingresos, lo que afecta significativamente
+# los agregados de datos.
 #
-# We can continue adding more control features:
+# Podemos seguir agregando más funciones de control:
 cond_both = MetricFrame(
     metrics=metric_fns,
     y_true=y_test,
@@ -506,17 +515,18 @@ cond_both = MetricFrame(
 )
 
 # %%
-# The ``overall`` property now splits into more values:
+# La propiedad ``overall`` se desglosa en más valores:
 cond_both.overall
 
 # %%
-# As does the ``by_groups`` property, where ``NaN`` values
-# indicate that there were no samples in the cell:
+# Al igual que la propiedad ``by_groups``, donde los valores ``NaN``
+# indica que no había muestras en la celda:
+
 cond_both.by_group
 
 # %%
-# The aggregates behave similarly. By this point, we are having significant issues
-# with under-populated intersections. Consider:
+# Los agregados de datos se comportan de manera similar. A estas alturas, estamos teniendo problemas importantes
+# con intersecciones poco pobladas. Consideremos:
 
 
 def member_counts(y_true, y_pred):
@@ -535,28 +545,28 @@ counts = MetricFrame(
 counts.by_group
 
 # %%
-# Recall that ``NaN`` indicates that there were no individuals
-# in a cell - ``member_counts()`` will not even have been called.
+# Recordemos que ``NaN`` indica que no hubo individuos
+# en una celda - ``member_counts()`` ni siquiera habrá sido llamado.
 
 # %%
-# Exporting from MetricFrame
-# ==========================
+# Exportando desde MetricFrame
+# ============================
 #
-# Sometimes, we need to extract our data for use in other tools.
-# For this, we can use the :py:meth:`pandas.DataFrame.to_csv` method,
-# since the :py:meth:`~fairlearn.metrics.MetricFrame.by_group` property
-# will be a :class:`pandas.DataFrame` (or in a few cases, it will be
-# a :class:`pandas.Series`, but that has a similar
-# :py:meth:`~pandas.Series.to_csv` method):
+# A veces, necesitamos extraer nuestros datos para usarlos en otras herramientas.
+# Para esto, podemos usar el método :py:meth:`pandas.DataFrame.to_csv`,
+# ya que :py:meth:`~fairlearn.metrics.MetricFrame.by_group`
+# será de tipo :class:`pandas.DataFrame` (o en algunos casos, será
+# de tipo :class:`pandas.Series`, pero tiene un método similar
+# :py:meth:`~ pandas.Series.to_csv`):
 
 csv_output = cond_credit_score.by_group.to_csv()
 print(csv_output)
 
 # %%
-# The :py:meth:`pandas.DataFrame.to_csv` method has a large number of
-# arguments to control the exported CSV. For example, it can write
-# directly to a CSV file, rather than returning a string (as shown
-# above).
+# El método :py:meth:`pandas.DataFrame.to_csv` tiene una gran cantidad de
+# argumentos para controlar el CSV exportado. Por ejemplo, puede escribir
+# directamente a un archivo CSV, en lugar de devolver una cadena de caracteres (como se
+# mostró anteriormente).
 #
-# The :meth:`~fairlearn.metrics.MetricFrame.overall` property can
-# be handled similarly, in the cases that it is not a scalar.
+# La propiedad :meth:`~ fairlearn.metrics.MetricFrame.overall` puede
+# manejarse de manera similar, en los casos en que no sea un escalar.

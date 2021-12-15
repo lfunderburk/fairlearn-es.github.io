@@ -5,7 +5,7 @@ Acerca de nosotros
 
 .. _mision:
 
-Mision
+Misión
 ------
 
 Fairlearn es un proyecto de código abierto impulsado por la comunidad para ayudar a los científicos de datos

@@ -126,12 +126,12 @@ local de Fairlearn, asegúrese de que coincidan con las versiones.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Metrics with Multiple Features">
+    <div class="sphx-glr-thumbcontainer" tooltip="Métricas con múltiples funciones">
 
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_new_metrics_thumb.png
-     :alt: Metrics with Multiple Features
+     :alt: Métricas con múltiples funciones
 
      :ref:`sphx_glr_auto_examples_plot_new_metrics.py`
 

@@ -48,9 +48,9 @@ para tareas que van más allá de la simple clasificación binaria.
 Resultados multiclase y no escalares
 ====================================
 
-Supongamos que tenemos un problema multiclase, con etiquetas :math:`\ in {0, 1, 2}`,
+Supongamos que tenemos un problema multiclase, con etiquetas :math:`\in {0, 1, 2}`,
 y que deseamos generar matrices de confusión para cada subgrupo
-identificado por la característica sensible :math:`\ in {a, b, c, d}`.
+identificado por la característica sensible :math:`\in {a, b, c, d}`.
 Esto es apoyado fácilmente por
 :class:`~ fairlearn.metrics.MetricFrame`, que no requiere
 el resultado de una métrica para ser un escalar.
@@ -521,7 +521,7 @@ trabajo).
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.574 seconds)
+   **Total running time of the script:** ( 0 minutes  0.552 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_metricframe_beyond_binary_classification.py:
