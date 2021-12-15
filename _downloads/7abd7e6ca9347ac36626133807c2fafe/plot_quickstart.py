@@ -2,9 +2,9 @@
 # Licensed under the MIT License.
 
 """
-==========================
-MetricFrame visualizations
-==========================
+=============================
+Visualizaciones de MetricFrame
+==============================
 """
 
 # %%
@@ -29,7 +29,7 @@ classifier = DecisionTreeClassifier(min_samples_leaf=10, max_depth=4)
 classifier.fit(X, y_true)
 y_pred = classifier.predict(X)
 
-# Analyze metrics using MetricFrame
+# Analizar métricas con MetricFrame
 metrics = {
     "accuracy": accuracy_score,
     "precision": precision_score,
@@ -50,7 +50,7 @@ metric_frame.by_group.plot.bar(
     title="Show all metrics",
 )
 
-# Customize plots with ylim
+# Personaliza gráficos con ylim
 metric_frame.by_group.plot(
     kind="bar",
     ylim=[0, 1],
@@ -61,7 +61,7 @@ metric_frame.by_group.plot(
     title="Show all metrics with assigned y-axis range",
 )
 
-# Customize plots with colormap
+# Personalizar gráficos con mapa de colores
 metric_frame.by_group.plot(
     kind="bar",
     subplots=True,
@@ -72,7 +72,8 @@ metric_frame.by_group.plot(
     title="Show all metrics in Accent colormap",
 )
 
-# Customize plots with kind (note that we are only plotting the "count" metric here because we are showing a pie chart)
+# Personalice los gráficos con tipo (tenga en cuenta que aquí solo estamos trazando la métrica
+# "recuento" porque mostramos un gráfico circular)
 metric_frame.by_group[["count"]].plot(
     kind="pie",
     subplots=True,

@@ -21,12 +21,12 @@ local de Fairlearn, asegúrese de que coincidan con las versiones.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Selection rates in census dataset">
+    <div class="sphx-glr-thumbcontainer" tooltip="Tasas de selección en el conjunto de datos del censo">
 
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_quickstart_selection_rate_thumb.png
-     :alt: Selection rates in census dataset
+     :alt: Tasas de selección en el conjunto de datos del censo
 
      :ref:`sphx_glr_auto_examples_plot_quickstart_selection_rate.py`
 
@@ -42,12 +42,12 @@ local de Fairlearn, asegúrese de que coincidan con las versiones.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="MetricFrame visualizations">
+    <div class="sphx-glr-thumbcontainer" tooltip="Visualizaciones de MetricFrame">
 
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_quickstart_thumb.png
-     :alt: MetricFrame visualizations
+     :alt: Visualizaciones de MetricFrame
 
      :ref:`sphx_glr_auto_examples_plot_quickstart.py`
 

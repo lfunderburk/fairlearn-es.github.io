@@ -2,9 +2,9 @@
 # Licensed under the MIT License.
 
 """
-=================================
-Selection rates in census dataset
-=================================
+====================================================
+Tasas de selección en el conjunto de datos del censo
+====================================================
 """
 # %%
 from fairlearn.metrics import MetricFrame, selection_rate

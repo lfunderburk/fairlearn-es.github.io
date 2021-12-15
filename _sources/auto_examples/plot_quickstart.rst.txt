@@ -18,11 +18,11 @@
 .. _sphx_glr_auto_examples_plot_quickstart.py:
 
 
-==========================
-MetricFrame visualizations
-==========================
+=============================
+Visualizaciones de MetricFrame
+==============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-84
+.. GENERATED FROM PYTHON SOURCE LINES 11-85
 
 
 
@@ -92,7 +92,7 @@ MetricFrame visualizations
     classifier.fit(X, y_true)
     y_pred = classifier.predict(X)
 
-    # Analyze metrics using MetricFrame
+    # Analizar métricas con MetricFrame
     metrics = {
         "accuracy": accuracy_score,
         "precision": precision_score,
@@ -113,7 +113,7 @@ MetricFrame visualizations
         title="Show all metrics",
     )
 
-    # Customize plots with ylim
+    # Personaliza gráficos con ylim
     metric_frame.by_group.plot(
         kind="bar",
         ylim=[0, 1],
@@ -124,7 +124,7 @@ MetricFrame visualizations
         title="Show all metrics with assigned y-axis range",
     )
 
-    # Customize plots with colormap
+    # Personalizar gráficos con mapa de colores
     metric_frame.by_group.plot(
         kind="bar",
         subplots=True,
@@ -135,7 +135,8 @@ MetricFrame visualizations
         title="Show all metrics in Accent colormap",
     )
 
-    # Customize plots with kind (note that we are only plotting the "count" metric here because we are showing a pie chart)
+    # Personalice los gráficos con tipo (tenga en cuenta que aquí solo estamos trazando la métrica
+    # "recuento" porque mostramos un gráfico circular)
     metric_frame.by_group[["count"]].plot(
         kind="pie",
         subplots=True,
@@ -148,7 +149,7 @@ MetricFrame visualizations
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.688 seconds)
+   **Total running time of the script:** ( 0 minutes  4.430 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_quickstart.py:
