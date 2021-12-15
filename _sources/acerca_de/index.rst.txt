@@ -213,3 +213,109 @@ Preguntas frecuentes
 --------------------------
 
 Vea nuestra página :ref:`preguntas_frequentes`.
+
+Fondos
+------
+
+Fairlearn es un proyecto impulsado por la comunidad. Sin embargo, varias empresas y
+Las instituciones académicas ayudan a asegurar su sostenibilidad.
+Nos gustaría agradecer a los siguientes patrocinadores.
+
+.. raw:: html
+
+   <div class="sponsor-div">
+   <div class="sponsor-div-box">
+
+`Microsoft <https://www.microsoft.com/>`_ ha financiado a varios contribuyentes
+incluidos varios mantenedores (Miro Dudik, Richard Edgar, Roman Lutz, Michael
+Madaio) desde el inicio del proyecto en 2018.
+
+.. raw:: html
+
+   </div>
+   <div class="sponsor-div-box">
+
+.. image:: ../_static/images/microsoft.png
+   :width: 100pt
+   :align: center
+   :target: https://www.microsoft.com/
+
+.. raw:: html
+
+   </div>
+   </div>
+   <div class="sponsor-div">
+   <div class="sponsor-div-box">
+
+`Eindhoven University of Technology <https://www.tue.nl/en/>`_ ha financiado
+Hilde Weerts desde marzo de 2020.
+
+.. raw:: html
+
+  </div>
+  <div class="sponsor-div-box">
+
+.. image:: ../_static/images/tu_eindhoven.png
+  :width: 100pt
+  :align: center
+  :target: https://www.tue.nl/en/
+
+.. raw:: html
+
+  </div>
+  </div>
+  <div class="sponsor-div">
+  <div class="sponsor-div-box">
+
+`Zalando <https://corporate.zalando.com/en>`_ ha financiado a Adrin Jalali desde
+Agosto de 2020.
+
+.. raw:: html
+
+  </div>
+  <div class="sponsor-div-box">
+
+.. image:: ../_static/images/zalando.png
+  :width: 100pt
+  :align: center
+  :target: https://corporate.zalando.com/en
+
+.. raw:: html
+
+  </div>
+  </div>
+
+Patrocinadores anteriores
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+  <div class="sponsor-div">
+  <div class="sponsor-div-box">
+
+`Anaconda <https://www.anaconda.com/>`_ financió a Adrin Jalali en 2019.
+
+.. raw:: html
+
+  </div>
+  <div class="sponsor-div-box">
+
+.. image:: ../_static/images/anaconda.png
+  :width: 100pt
+  :align: center
+  :target: https://www.anaconda.com/
+
+.. raw:: html
+
+  </div>
+  </div>
+
+Soporte de infraestructura
+--------------------------
+
+También nos gustaría agradecer a las siguientes personas por el tiempo de CPU libre en sus
+servidores de integración continua:
+
+- `Microsoft Azure <https://azure.microsoft.com/en-us/>`_
+- `GitHub <https://github.com>`_
+- `CircleCI <https://circleci.com/>`_

@@ -1,5 +1,0 @@
-:orphan:
-.. _guía_instalación:
-
-Guía de Instalación
-===================
