@@ -63,12 +63,12 @@ local de Fairlearn, asegúrese de que coincidan con las versiones.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="MetricFrame: Beyond Binary Classification">
+    <div class="sphx-glr-thumbcontainer" tooltip="MetricFrame: más allá de la clasificación binaria">
 
 .. only:: html
 
  .. figure:: /auto_examples/images/thumb/sphx_glr_plot_metricframe_beyond_binary_classification_thumb.png
-     :alt: MetricFrame: Beyond Binary Classification
+     :alt: MetricFrame: más allá de la clasificación binaria
 
      :ref:`sphx_glr_auto_examples_plot_metricframe_beyond_binary_classification.py`
 

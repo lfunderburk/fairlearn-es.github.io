@@ -2,31 +2,31 @@
 # Licensed under the MIT License.
 
 """
-=========================================
-MetricFrame: Beyond Binary Classification
-=========================================
+=================================================
+MetricFrame: más allá de la clasificación binaria
+=================================================
 """
 
 # %%
-# This notebook contains examples of using :class:`~fairlearn.metrics.MetricFrame`
-# for tasks which go beyond simple binary classification.
+# Este notebook contiene ejemplos de uso :class:`~ fairlearn.metrics.MetricFrame`
+# para tareas que van más allá de la simple clasificación binaria.
 
 import sklearn.metrics as skm
 import functools
 from fairlearn.metrics import MetricFrame
 
 # %%
-# Multiclass & Nonscalar Results
-# ==============================
+# Resultados multiclase y no escalares
+# ====================================
 #
-# Suppose we have a multiclass problem, with labels :math:`\in {0, 1, 2}`,
-# and that we wish to generate confusion matrices for each subgroup
-# identified by the sensitive feature :math:`\in { a, b, c, d}`.
-# This is supported readily by
-# :class:`~fairlearn.metrics.MetricFrame`, which does not require
-# the result of a metric to be a scalar.
+# Supongamos que tenemos un problema multiclase, con etiquetas :math:`\ in {0, 1, 2}`,
+# y que deseamos generar matrices de confusión para cada subgrupo
+# identificado por la característica sensible :math:`\ in {a, b, c, d}`.
+# Esto es apoyado fácilmente por
+# :class:`~ fairlearn.metrics.MetricFrame`, que no requiere
+# el resultado de una métrica para ser un escalar.
 #
-# First, let us generate some random input data:
+# Primero, generemos algunos datos de entrada aleatorios:
 
 import numpy as np
 
@@ -43,18 +43,18 @@ temp = rng.integers(n_sensitive_features, size=n_rows)
 s_f = [chr(ord('a')+x) for x in temp]
 
 # %%
-# To use :func:`~sklearn.metrics.confusion_matrix`, we
-# need to prebind the `labels` argument, since it is possible
-# that some of the subgroups will not contain all of
-# the possible labels
+# Para usar :func:`~ sklearn.metrics.confusion_matrix`,
+# es necesario enlazar previamente el argumento `labels` (etiquetas), ya que es posible
+# que algunos de los subgrupos no contendrán todos
+# las posibles etiquetas
 
 
 conf_mat = functools.partial(skm.confusion_matrix,
                              labels=np.unique(y_true))
 
 # %%
-# With this now available, we can create our
-# :class:`~fairlearn.metrics.MetricFrame`:
+# Con esto ahora disponible, podemos crear nuestro objeto
+# :class:`~ fairlearn.metrics.MetricFrame`:
 
 mf = MetricFrame(metrics={'conf_mat': conf_mat},
                  y_true=y_true,
@@ -62,25 +62,25 @@ mf = MetricFrame(metrics={'conf_mat': conf_mat},
                  sensitive_features=s_f)
 
 # %%
-# From this, we can view the overall confusion matrix:
+# A partir de esto, podemos ver la matriz de confusión general:
 
 mf.overall
 
 # %%
-# And also the confusion matrices for each subgroup:
+# Y también las matrices de confusión para cada subgrupo:
 
 mf.by_group
 
 # %%
-# Obviously, the other methods such as
-# :meth:`~fairlearn.metrics.MetricFrame.group_min`
-# will not work, since operations such as 'less than'
-# are not well defined for matrices.
+# Obviamente, los otros métodos como
+# :meth:`~ fairlearn.metrics.MetricFrame.group_min`
+# no funcionarán, ya que operaciones como 'less than' (menor que)
+# no están bien definidos para matrices.
 
 # %%
-# Metric functions with different return types can also
-# be mixed in a single :class:`~fairlearn.metrics.MetricFrame`.
-# For example:
+# Las funciones métricas con diferentes tipos de retorno también pueden
+# mezclarse con :class:`~ fairlearn.metrics.MetricFrame`.
+# Por ejemplo:
 
 recall = functools.partial(skm.recall_score, average='macro')
 
@@ -98,27 +98,27 @@ print(mf2.by_group)
 
 
 # %%
-# Non-scalar Inputs
-# =================
+# Argumentos no escalares
+# =======================
 #
-# :class:`~fairlearn.metrics.MetricFrame` does not require
-# its inputs to be scalars either. To demonstrate this, we
-# will use an image recognition example (kindly supplied by
-# Ferdane Bekmezci, Hamid Vaezi Joze and Samira Pouyanfar).
+# :class:`~ fairlearn.metrics.MetricFrame` no requiere
+# que los argumentos sean escalares. Para demostrar esto,
+# utilizaremos un ejemplo de reconocimiento de imágenes (proporcionado amablemente por
+# Ferdane Bekmezci, Hamid Vaezi Joze y Samira Pouyanfar).
 #
-# Image recognition algorithms frequently construct a bounding
-# box around regions where they have found their target features.
-# For example, if an algorithm detects a face in an image, it
-# will place a bounding box around it. These bounding boxes
-# constitute `y_pred` for :class:`~fairlearn.metrics.MetricFrame`.
-# The `y_true` values then come from bounding boxes marked by
-# human labellers.
+# Los algoritmos de reconocimiento de imágenes frecuentemente construyen un cuadro delimitador
+# (bounding box) alrededor de las regiones donde han encontrado las características objetivo.
+# Por ejemplo, si un algoritmo detecta un rostro en una imagen,
+# colocará un cuadro delimitador a su alrededor. Estos cuadros delimitadores
+# constituyen `y_pred` para :class:`~ fairlearn.metrics.MetricFrame`.
+# Los valores de `y_true` proceden de los cuadros delimitadores marcados con
+# etiquetadores humanos.
 #
-# Bounding boxes are often compared using the 'iou' metric.
-# This computes the intersection and the union of the two
-# bounding boxes, and returns the ratio of their areas.
-# If the bounding boxes are identical, then the metric will
-# be 1; if disjoint then it will be 0. A function to do this is:
+# Los cuadros delimitadores a menudo se comparan utilizando la métrica 'iou'.
+# Ésta calcula la intersección y la unión de los dos
+# cuadros delimitadores y devuelve la proporción de sus áreas.
+# Si los cuadros delimitadores son idénticos, entonces la métrica
+# be 1; si está disjunto, será 0. Una función para hacer esto es:
 
 def bounding_box_iou(box_A_input, box_B_input):
     # The inputs are array-likes in the form
@@ -166,10 +166,10 @@ def bounding_box_iou(box_A_input, box_B_input):
     return iou
 
 # %%
-# This is a metric for two bounding boxes, but for :class:`~fairlearn.metrics.MetricFrame`
-# we need to compare two lists of bounding boxes. For the sake of
-# simplicity, we will return the mean value of 'iou' for the
-# two lists, but this is by no means the only choice:
+# Esta es una métrica para dos cuadros delimitadores, pero para :class:`~ fairlearn.metrics.MetricFrame`
+# necesitamos comparar dos listas de cuadros delimitadores. Por
+# simplicidad, devolveremos el valor medio de 'iou' para las
+# dos listas, pero esta no es la única opción:
 
 
 def mean_iou(true_boxes, predicted_boxes):
@@ -184,8 +184,8 @@ def mean_iou(true_boxes, predicted_boxes):
     return np.mean(all_iou)
 
 # %%
-# We need to generate some input data, so first create a function to
-# generate a single random bounding box:
+# Necesitamos generar algunos datos de entrada, así que primero crearemos una función para
+# generar un solo cuadro delimitador aleatorio:
 
 
 def generate_bounding_box(max_coord, max_delta, rng):
@@ -195,8 +195,8 @@ def generate_bounding_box(max_coord, max_delta, rng):
     return np.concatenate((corner, delta))
 
 # %%
-# Now use this to create sample `y_true` and `y_pred` arrays of
-# bounding boxes:
+# Usaremos esto para crear matrices de muestra `y_true` e `y_pred` de
+# cuadros delimitadores:
 
 
 def many_bounding_boxes(n_rows, max_coord, max_delta, rng):
@@ -210,7 +210,7 @@ true_bounding_boxes = many_bounding_boxes(n_rows, 5, 10, rng)
 pred_bounding_boxes = many_bounding_boxes(n_rows, 5, 10, rng)
 
 # %%
-# Finally, we can use these in a :class:`~fairlearn.metrics.MetricFrame`:
+# Finalmente, podemos usarlos en :class:`~ fairlearn.metrics.MetricFrame`:
 
 mf_bb = MetricFrame(metrics={'mean_iou': mean_iou},
                     y_true=true_bounding_boxes,
@@ -223,30 +223,29 @@ print("Metrics by group")
 print(mf_bb.by_group)
 
 # %%
-# The individual entries in the `y_true` and `y_pred` arrays
-# can be arbitrarily complex. It is the metric functions
-# which give meaning to them. Similarly,
-# :class:`~fairlearn.metrics.MetricFrame` does not impose
-# restrictions on the return type. One can envisage an image
-# recognition task where there are multiple detectable objects in each
-# picture, and the image recognition algorithm produces
-# multiple bounding boxes (not necessarily in a 1-to-1
-# mapping either). The output of such a scenario might
-# well be a matrix of some description.
-# Another case where both the input data and the metrics
-# will be complex is natural language processing,
-# where each row of the input could be an entire sentence,
-# possibly with complex word embeddings included.
+# Las entradas individuales en las matrices `y_true` e `y_pred`
+# puede ser arbitrariamente complejas. Son las funciones métricas
+# que les dan sentido. De manera similar,
+# :class:`~ fairlearn.metrics.MetricFrame` no impone
+# restricciones sobre el tipo de resultado obtenido. Uno puede imaginarse una tarea
+# de imagen de reconocimiento donde hay múltiples objetos detectables en cada
+# imagen, y el algoritmo de reconocimiento de imágenes produce
+# varios cuadros delimitadores (no necesariamente en un mapeo 1-a-1). El resultado de tal escenario podría
+# ser una matriz de alguna descripción.
+# Otro caso en el que tanto los datos de entrada como las métricas
+# serán complejos es el procesamiento del lenguaje natural,
+# donde cada fila de la entrada podría ser una oración completa,
+# posiblemente con incrustaciones de palabras complejas incluidas.
 
 # %%
-# Conclusion
+# Conclusión
 # ==========
 #
-# This notebook has given some taste of the flexibility
-# of :class:`~fairlearn.metrics.MetricFrame` when it comes
-# to inputs, outputs and metric functions.
-# The input arrays can have elements of arbitrary types,
-# and the return values from the metric functions can also
-# be of any type (although methods such as
-# :meth:`~fairlearn.metrics.MetricFrame.group_min` may not
-# work).
+# Este tutorial ha probado la flexibilidad
+# de :class:`~ fairlearn.metrics.MetricFrame` cuando se trata
+# de argumentos de entradas, salida y de funciones métricas.
+# Las argumentos de entradas de tipo lista (array) pueden tener elementos de tipos arbitrarios,
+# y los valores de retorno de las funciones métricas también pueden
+# ser de cualquier tipo (aunque métodos como
+# :meth:`~ fairlearn.metrics.MetricFrame.group_min` puede no
+# trabajo).
