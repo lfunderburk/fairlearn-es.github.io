@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 """
-=============================
+==============================
 Visualizaciones de MetricFrame
 ==============================
 """

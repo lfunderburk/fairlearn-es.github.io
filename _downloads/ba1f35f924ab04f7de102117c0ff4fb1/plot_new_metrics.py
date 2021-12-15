@@ -224,7 +224,7 @@ print("fbeta:", skm.fbeta_score(y_test, y_pred, beta=0.6))
 # Sabemos que hay características sensibles en nuestros datos y queremos
 # asegurarnos de no dañar a las personas debido a su membresía en
 # estos grupos. Para este propósito, Fairlearn proporciona la clase
-# :clase:`fairlearn.metrics.MetricFrame`. Construyamos una instancia de esta clase y luego miremos
+# :class:`fairlearn.metrics.MetricFrame`. Construyamos una instancia de esta clase y luego miremos
 # sus capacidades:
 
 fbeta_06 = functools.partial(skm.fbeta_score, beta=0.6, zero_division=1)

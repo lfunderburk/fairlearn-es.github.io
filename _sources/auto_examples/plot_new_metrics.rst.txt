@@ -511,7 +511,7 @@ Podemos evaluar estas métricas directamente:
 Sabemos que hay características sensibles en nuestros datos y queremos
 asegurarnos de no dañar a las personas debido a su membresía en
 estos grupos. Para este propósito, Fairlearn proporciona la clase
-:clase:`fairlearn.metrics.MetricFrame`. Construyamos una instancia de esta clase y luego miremos
+:class:`fairlearn.metrics.MetricFrame`. Construyamos una instancia de esta clase y luego miremos
 sus capacidades:
 
 .. GENERATED FROM PYTHON SOURCE LINES 229-245
@@ -867,8 +867,8 @@ Podemos inspeccionar los valores generales y verificar que sean los esperados:
 
  .. code-block:: none
 
-    selection_rate     0.19337
-    fbeta_06          0.675419
+    selection_rate    0.193529
+    fbeta_06           0.68269
     count                14653
     dtype: object
 
@@ -926,14 +926,14 @@ También podemos ver el efecto sobre la métrica que se evalúa en los subgrupos
       <tbody>
         <tr>
           <th>Female</th>
-          <td>0.068546</td>
-          <td>0.622989</td>
+          <td>0.070202</td>
+          <td>0.63873</td>
           <td>4838</td>
         </tr>
         <tr>
           <th>Male</th>
-          <td>0.254281</td>
-          <td>0.682873</td>
+          <td>0.255199</td>
+          <td>0.689246</td>
           <td>9815</td>
         </tr>
       </tbody>
@@ -2336,7 +2336,7 @@ manejarse de manera similar, en los casos en que no sea un escalar.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.531 seconds)
+   **Total running time of the script:** ( 0 minutes  13.179 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_new_metrics.py:
